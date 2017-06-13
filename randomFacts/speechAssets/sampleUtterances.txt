@@ -1,0 +1,5 @@
+RandomIntent {Category}
+RandomIntent Tell me a random fact about {Category}
+
+AMAZON.HelpIntent List out the categories
+AMAZON.HelpIntent What were the categories
