@@ -27,10 +27,10 @@ var handlers = {
         speechOutput = "I am glad you are feeling excited";
         break;
       default:
-        speechOutput = "Sorry Invaild. Please try again.";
+        speechOutput = "Sorry Invalid. Please try again.";
         break;
     }
-    this.emit(":tell", speechOutput);
+    this.emit(":ask", speechOutput);
   },
 
   'NameIntent': function(){
@@ -50,7 +50,7 @@ var handlers = {
         speechOutput = "Bob is a cook";
         break;
       default:
-        speechOutput = "Invaild";
+        speechOutput = "Invalid";
         break;
     }
 
