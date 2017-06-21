@@ -8,8 +8,8 @@ var reprompt;
 
 var handlers = {
   'LaunchRequest': function(){
-    var welcomeOutput = "Welcome to eventbrite demo. What event are you looking for and where is this event?";
-    var welcomeReprompt = "";
+    var welcomeOutput = "Welcome to eventbrite demo. What event are you looking for?";
+    var welcomeReprompt = "What event are you looking for?";
     this.emit(':ask', welcomeOutput, welcomeReprompt);
   },
 
@@ -29,8 +29,9 @@ var handlers = {
         numId += 1;
       });
 
+      var introOutput = `Here are the first five events from ${title} at ${city}: `;
       speechOutput = tenEventTitles.join(", ").replace(/&/g, "and");
-      self.emit(":tell", speechOutput);
+      self.emit(":tell",  `${introOutput} ${speechOutput}`);
     });
   },
 
