@@ -1,0 +1,36 @@
+{
+  "intents":[
+    {
+      "intent": "EventsIntent",
+      "slots": [
+        {
+          "name": "title",
+          "type": "LIST_OF_TITLES"
+        },
+        {
+          "name": "city",
+          "type": "LIST_OF_CITIES"
+        },
+        {
+          "name": "startDate",
+          "type": "LIST_OF_DATES"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

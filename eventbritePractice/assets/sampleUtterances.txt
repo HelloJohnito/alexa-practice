@@ -1,0 +1,3 @@
+EventsIntent search for {title}
+EventsIntent search for {title} at {city}
+EventsIntent search for {title} at {city} on {startDate}
