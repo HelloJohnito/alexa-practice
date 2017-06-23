@@ -39,11 +39,6 @@ var handlers = {
     var cardTitle = name;
     var cardContent = "this is the card content";
 
-    // var imageObj = {
-    //     smallImageUrl: 'https://imgs.xkcd.com/comics/standards.png',
-    //     largeImageUrl: 'https://imgs.xkcd.com/comics/standards.png'
-    // };
-
     var imageObj = {
         smallImageUrl: 'https://s3.amazonaws.com/tsatsatzu-public/images/test_lg.png',
         largeImageUrl: 'https://s3.amazonaws.com/tsatsatzu-public/images/test_sm.png'
