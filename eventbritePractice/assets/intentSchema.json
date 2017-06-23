@@ -1,36 +1,64 @@
 {
-  "intents":[
+  "intents": [
     {
-      "intent": "EventsIntent",
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.NoIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.YesIntent",
+      "samples": []
+    },
+    {
+      "name": "EventsIntent",
+      "samples": [
+        "search for {title}",
+        "at {city}",
+        "search for {title} at {city}",
+        "search for {title} at {city} on {startDate}"
+      ],
       "slots": [
         {
           "name": "title",
-          "type": "LIST_OF_TITLES"
+          "type": "LIST_OF_TITLES",
+          "samples": []
         },
         {
           "name": "city",
-          "type": "LIST_OF_CITIES"
+          "type": "AMAZON.US_CITY",
+          "samples": []
         },
         {
           "name": "startDate",
-          "type": "LIST_OF_DATES"
+          "type": "AMAZON.DATE",
+          "samples": []
         }
       ]
-    },
+    }
+  ],
+  "types": [
     {
-      "intent": "AMAZON.YesIntent"
-    },
-    {
-      "intent": "AMAZON.NoIntent"
-    },
-    {
-      "intent": "AMAZON.HelpIntent"
-    },
-    {
-      "intent": "AMAZON.StopIntent"
-    },
-    {
-      "intent": "AMAZON.CancelIntent"
+      "name": "LIST_OF_TITLES",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "software",
+            "synonyms": []
+          }
+        }
+      ]
     }
   ]
 }
