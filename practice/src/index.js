@@ -14,7 +14,7 @@ var handlers = {
 
   // Alexa, ask demo practice ""
   'FeelingsIntent': function(){
-    var feeling = this.event.request.intent.slots.feeling.value;
+    var feeling = this.event.request.intent.slots.feelings.value;
 
     switch(feeling){
       case "happy":
@@ -30,7 +30,7 @@ var handlers = {
         speechOutput = "Sorry Invalid. Please try again.";
         break;
     }
-    this.emit(":ask", speechOutput);
+    this.emit(":tell", speechOutput);
   },
 
   'NameIntent': function(){
