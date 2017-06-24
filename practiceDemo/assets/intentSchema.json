@@ -1,0 +1,37 @@
+{
+  "intents":[
+    {
+      "intent": "FeelingsIntent",
+      "slots": [
+        {
+          "name": "feeling",
+          "type": "LIST_OF_FEELINGS"
+        }
+      ]
+    },
+    {
+      "intent": "NameIntent",
+      "slots": [
+        {
+          "name": "name",
+          "type": "LIST_OF_NAME"
+        },
+      ]
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

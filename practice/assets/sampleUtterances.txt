@@ -1,5 +1,0 @@
-NameIntent {name}
-NameIntent tell me about {name}
-NameIntent who is {name}
-FeelingsIntent how are you {feeling}
-Amazon.HelpIntent Can you repeat that
