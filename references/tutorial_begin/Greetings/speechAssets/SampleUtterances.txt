@@ -1,6 +1,7 @@
 HelloIntent say hello to {FirstName}
 
 QuoteIntent get me a quote
+QuoteIntent give me a quote
 
 NextQuoteIntent more
 NextQuoteIntent yes

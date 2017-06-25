@@ -1,9 +1,8 @@
-'use strict'
+'use strict';
 
-var expect = require('chai').expect,  
+var expect = require('chai').expect,
 
-lambdaToTest = require('./index')
-
+lambdaToTest = require('./index');
 
 function Context() {
   this.speechResponse = null;
@@ -105,24 +104,24 @@ describe('All intents', function() {
      //it('valid outputSpeech', function() {
      //  expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/<speak>Hi,.*<\/speak>/);
      //});
-    
+
      //it('valid repromptSpeech', function() {
      //  expect(ctx.speechResponse.response.reprompt.outputSpeech.ssml).to.match(/<speak>For example.*<\/speak>/);
      //});
 
   });
 
-    describe(`Test TBDIntentName`, function() {
+    describe(`Test HelloIntent`, function() {
 
         before(function(done) {
           event.request.intent = {};
           event.session.attributes = {};
           event.request.type = 'IntentRequest';
-          event.request.intent.name = 'TBDIntentName';
+          event.request.intent.name = 'HelloIntent';
           event.request.intent.slots = {
             TBDSlotName: {
-              name: 'TBDSlotName',
-              value: 'TBDValue'
+              name: 'FirstName',
+              value: 'john'
             }
           };
           ctx.done = done;
@@ -131,14 +130,14 @@ describe('All intents', function() {
 
        it('valid response', function() {
          validRsp(ctx, {
-           endSession: TBD
+           endSession: true
          });
        });
 
-       //it('valid outputSpeech', function() {
-       //  expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/<speak>Hi,.*<\/speak>/);
-       //});
-    
+      //  it('valid outputSpeech', function() {
+      //   expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/<speak>Hello<\/speak>/);
+      //  });
+
        //it('valid repromptSpeech', function() {
        //  expect(ctx.speechResponse.response.reprompt.outputSpeech.ssml).to.match(/<speak>For example.*<\/speak>/);
        //});
