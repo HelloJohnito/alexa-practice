@@ -3,9 +3,13 @@
 var http = require('http');
 
 exports.handler = function(event, context){
-
   try{
     var request = event.request;
+    var session = event.session;
+
+    if(!event.session.attributes){
+      event.session.attributes = {};
+    }
 
     /*
       i)   LaunchRequest
@@ -14,37 +18,21 @@ exports.handler = function(event, context){
     */
 
     if(request.type === "LaunchRequest"){
-      let options = {};
-      options.speechText = "Welcome to Greetings Skill. Using our skill you can greet your guests. Whom you want to greet?";
-      options.repromptText = "You can say for example, say hello to John";
-      options.endSession = false;
-      context.succeed(buildResponse(options));
+      handleLaunchRequest(context);
 
-    } else if(request.type === "IntentRequest"){
-      let options = {};
+    }
+    else if(request.type === "IntentRequest"){
 
       if(request.intent.name === "HelloIntent"){
-        let name = request.intent.slots.FirstName.value;
-        options.speechText = `Hello ${name}. Your name is spelled <say-as interpret-as="spell-out">${name}</say-as> .`;
-        options.speechText += getWish();
-
-        getQuote(function(quote, err){
-          if(err){
-            context.fail(err);
-          } else {
-            options.speechText += quote;
-            options.endSession = true;
-            context.succeed(buildResponse(options));
-          }
-        });
-
-      } else {
+        handleHelloIntent(request, context);
+      }
+      else {
         throw "Unknown Intent";
       }
-
-    } else if(request.type === "SessionEndedRequst"){
-
-    } else {
+    }
+    else if(request.type === "SessionEndedRequst"){
+    }
+    else {
       throw "Unknown Intent Type";
     }
   } catch(e){
@@ -52,6 +40,12 @@ exports.handler = function(event, context){
   }
 };
 
+
+/////////////////////////
+  /// Functions ///////
+/////////////////////////
+
+//Uses Quotes API to grab quotes
 function getQuote(callback){
   var url = "http://api.forismatic.com/api/1.0/json?method=getQuote&lang=en&format=json";
 
@@ -85,12 +79,18 @@ function getWish(){
 
   if(hours < 12){
     return "Good Morning. ";
-  } else if(hours < 18){
+  }
+  else if(hours < 18){
     return "Good afternoon. ";
-  } else {
+  }
+  else {
     return "Good evening. ";
   }
 }
+
+//////////////////////////////
+  //// Build Response ////
+//////////////////////////////
 
 function buildResponse(options){
   var response = {
@@ -117,7 +117,41 @@ function buildResponse(options){
 }
 
 
-///////////////////Testing ////////////
+////////////////////////////
+  //HANDLE REQUESTS///
+////////////////////////////
+
+function handleLaunchRequest(context){
+  let options = {};
+  options.speechText = "Welcome to Greetings Skill. Using our skill you can greet your guests. Whom you want to greet?";
+  options.repromptText = "You can say for example, say hello to John";
+  options.endSession = false;
+  context.succeed(buildResponse(options));
+}
+
+
+function handleHelloIntent(request, context){
+  let options = {};
+  let name = request.intent.slots.FirstName.value;
+  options.speechText = `Hello ${name}. Your name is spelled <say-as interpret-as="spell-out">${name}</say-as> .`;
+  options.speechText += getWish();
+
+  getQuote(function(quote, err){
+    if(err){
+      context.fail(err);
+    }
+    else {
+      options.speechText += quote;
+      options.endSession = true;
+      context.succeed(buildResponse(options));
+    }
+  });
+}
+
+///////////////////////
+  ////Testing ///
+///////////////////////
+
 let e = {
   "session": {
     "new": false,
