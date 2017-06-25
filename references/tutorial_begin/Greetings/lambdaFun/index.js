@@ -1,5 +1,7 @@
 'use strict';
 
+var http = require('http');
+
 exports.handler = function(event, context){
 
   try{
@@ -14,7 +16,7 @@ exports.handler = function(event, context){
     if(request.type === "LaunchRequest"){
       let options = {};
       options.speechText = "Welcome to Greetings Skill. Using our skill you can greet your guests. Whom you want to greet?";
-      options.repromptText = "You can sayy for example, say hello to John";
+      options.repromptText = "You can say for example, say hello to John";
       options.endSession = false;
       context.succeed(buildResponse(options));
 
@@ -23,10 +25,18 @@ exports.handler = function(event, context){
 
       if(request.intent.name === "HelloIntent"){
         let name = request.intent.slots.FirstName.value;
-        options.speechText = "Hello" + name +". ";
+        options.speechText = `Hello ${name}. Your name is spelled <say-as interpret-as="spell-out">${name}</say-as> .`;
         options.speechText += getWish();
-        options.endSession = true;
-        context.success(buildResponse(options));
+
+        getQuote(function(quote, err){
+          if(err){
+            context.fail(err);
+          } else {
+            options.speechText += quote;
+            options.endSession = true;
+            context.succeed(buildResponse(options));
+          }
+        });
 
       } else {
         throw "Unknown Intent";
@@ -38,9 +48,31 @@ exports.handler = function(event, context){
       throw "Unknown Intent Type";
     }
   } catch(e){
-    context.fail("Exception:" + e);
+    context.fail("Exception: " + e);
   }
 };
+
+function getQuote(callback){
+  var url = "http://api.forismatic.com/api/1.0/json?method=getQuote&lang=en&format=json";
+
+  var req = http.get(url, function(res){
+    var body = "";
+
+    res.on("data", function(chunk){
+      body += chunk;
+    });
+
+    res.on("end", function(){
+      body = body.replace(/\\/g, "");
+      var quote = JSON.parse(body);
+      callback(quote.quoteText);
+    });
+  });
+
+  req.on("error", function(err){
+    callback("", err);
+  });
+}
 
 //grabs the date and figures out if it is morning, afternoon, or evening
 function getWish(){
@@ -52,11 +84,11 @@ function getWish(){
   }
 
   if(hours < 12){
-    return "Good Morning.";
+    return "Good Morning. ";
   } else if(hours < 18){
-    return "Good afternoon.";
+    return "Good afternoon. ";
   } else {
-    return "Good evening.";
+    return "Good evening. ";
   }
 }
 
@@ -65,8 +97,8 @@ function buildResponse(options){
     version: "1.0",
     response: {
       outputSpeech: {
-        type: "PlainText",
-        text: options.speechText
+        type: "SSML",
+        ssml: "<speak>" + options.speechText + "</speak>"
       },
       shouldEndSession: options.endSession
     }
@@ -74,12 +106,52 @@ function buildResponse(options){
 
   if(options.repromptText){
     response.response.reprompt = {
-      outSpeech: {
-        type: "PlainText",
-        text: options.reprompText
+      outputSpeech: {
+        type: "SSML",
+        ssml: "<speak>" + options.reprompText + "</speak>"
       }
     };
   }
 
   return response;
 }
+
+
+///////////////////Testing ////////////
+let e = {
+  "session": {
+    "new": false,
+    "sessionId": "session1234",
+    "attributes": {},
+    "user": {
+      "userId": "usr123"
+    },
+    "application": {
+      "applicationId": "amzn1.echo-sdk-ams.app.5acba9b5-6d09-4444-aaa8-618c56eb0335"
+    }
+  },
+  "version": "1.0",
+  "request": {
+    "intent": {
+      "slots": {
+        "FirstName": {
+          "name": "FirstName",
+          "value": "John"
+        }
+      },
+      "name": "HelloIntent"
+    },
+    "type": "IntentRequest",
+    "requestId": "request5678"
+  }
+};
+
+//
+// handler(e, {
+//   succeed: function(res){
+//     console.log(res);
+//   },
+//   fail: function(string){
+//     console.log(string);
+//   }
+// });
