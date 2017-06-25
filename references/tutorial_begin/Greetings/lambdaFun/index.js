@@ -26,6 +26,18 @@ exports.handler = function(event, context){
       if(request.intent.name === "HelloIntent"){
         handleHelloIntent(request, context);
       }
+      else if(request.intent.name === "QuoteIntent"){
+        handleQuoteIntent(request, context, session);
+      }
+      else if(request.intent.name === "NextQuoteIntent"){
+        handleNextQuoteIntent(request, context, session);
+      }
+      else if(request.intent.name === "AMAZON.StopIntent" || request.intent.name === "AMAZON.CancelIntent"){
+        context.succeed(buildResponse({
+          speechText: "Good bye",
+          endSession: true
+        }));
+      }
       else {
         throw "Unknown Intent";
       }
@@ -113,6 +125,29 @@ function buildResponse(options){
     };
   }
 
+  if(options.cardTitle){
+    response.response.card = {
+      type: "Simple",
+      title: options.cardTitle
+    };
+
+    if(options.imageUrl){
+      response.response.card.type = "Standard";
+      response.response.card.content = options.cardContent;
+      response.response.card.image = {
+        smallImageUrl: options.imageUrl,
+        largeImageUrl: options.imageUrl
+      };
+    }
+    else {
+      response.response.card.content = options.cardContent;
+    }
+  }
+
+  if(options.session && options.session.attributes){
+    response.sessionAttributes = options.session.attributes;
+  }
+
   return response;
 }
 
@@ -123,12 +158,11 @@ function buildResponse(options){
 
 function handleLaunchRequest(context){
   let options = {};
-  options.speechText = "Welcome to Greetings Skill. Using our skill you can greet your guests. Whom you want to greet?";
+  options.speechText = "Welcome to Greetings Skill. Using our skill you can greet your guests. Whom you want to greet? ";
   options.repromptText = "You can say for example, say hello to John";
   options.endSession = false;
   context.succeed(buildResponse(options));
 }
-
 
 function handleHelloIntent(request, context){
   let options = {};
@@ -136,16 +170,65 @@ function handleHelloIntent(request, context){
   options.speechText = `Hello ${name}. Your name is spelled <say-as interpret-as="spell-out">${name}</say-as> .`;
   options.speechText += getWish();
 
+  options.cardTitle = `Hello ${name}!`;
+
   getQuote(function(quote, err){
     if(err){
       context.fail(err);
     }
     else {
       options.speechText += quote;
+      options.cardContent = quote;
+      options.imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Hello_smile.png';
       options.endSession = true;
       context.succeed(buildResponse(options));
     }
   });
+}
+
+function handleQuoteIntent(request, context, session){
+  let options = {};
+  options.session = session;
+
+  getQuote(function(quote, err){
+    if(err){
+      context.fail(err);
+    }
+    else {
+      options.speechText = quote;
+      options.speechText += "Do you want to listen to one more quote? ";
+      options.repromptText = "You can say yes or more. ";
+      options.session.attributes.quoteIntent = true;
+      options.endSession = false;
+      context.succeed(buildResponse(options));
+    }
+  });
+}
+
+function handleNextQuoteIntent(request, context, session){
+  let options = {};
+  options.session = session;
+
+  if(session.attributes.quoteIntent){
+    getQuote(function(quote, err){
+      if(err){
+        context.fail(err);
+      }
+      else {
+        options.speechText = quote;
+        options.speechText += "Do you want to listen to one more quote?" ;
+        options.repromptText = "You can say yes or more. ";
+        // options.session.attributes.quoteIntent = true;
+        options.endSession = false;
+        context.succeed(buildResponse(options));
+      }
+    });
+  }
+  else {
+    options.speechText = "Wrong invocation of this intent. ";
+    options.endSession = true;
+    context.succeed(buildResponse(options));
+  }
 }
 
 ///////////////////////
@@ -180,7 +263,7 @@ let e = {
   }
 };
 
-//
+
 // handler(e, {
 //   succeed: function(res){
 //     console.log(res);
