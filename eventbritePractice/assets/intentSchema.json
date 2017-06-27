@@ -1,27 +1,27 @@
 {
   "intents": [
     {
-      "name": "AMAZON.CancelIntent",
+      "intent": "AMAZON.CancelIntent",
       "samples": []
     },
     {
-      "name": "AMAZON.HelpIntent",
+      "intent": "AMAZON.HelpIntent",
       "samples": []
     },
     {
-      "name": "AMAZON.NoIntent",
+      "intent": "AMAZON.NoIntent",
       "samples": []
     },
     {
-      "name": "AMAZON.StopIntent",
+      "intent": "AMAZON.StopIntent",
       "samples": []
     },
     {
-      "name": "AMAZON.YesIntent",
+      "intent": "AMAZON.YesIntent",
       "samples": []
     },
     {
-      "name": "EventsIntent",
+      "intent": "EventsIntent",
       "samples": [
         "search for {title}",
         "at {city}",

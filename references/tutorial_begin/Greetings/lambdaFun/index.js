@@ -24,7 +24,6 @@ exports.handler = function(event, context){
 
     if(request.type === "LaunchRequest"){
       handleLaunchRequest(context);
-
     }
     else if(request.type === "IntentRequest"){
 

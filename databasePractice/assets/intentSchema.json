@@ -1,0 +1,34 @@
+{
+  "intents":[
+    {
+      "intent": "SaveDataIntent",
+      "slots":[
+        {
+          "name": "data",
+          "type": "LIST_OF_DATA"
+        }
+      ]
+    },
+    {
+      "intent": "ReadDataIntent",
+      "slots":[
+        {
+          "name": "data",
+          "type": "LIST_OF_DATA"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

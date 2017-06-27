@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "request": {
+    "type": "IntentRequest",
+    "intent": {
+      "name": "SaveDataIntent",
+      "slots": {
+        "data": {
+          "name": "data",
+          "value": "TestingFromLambda"
+        }
+      }
+    }
+  }
+}
