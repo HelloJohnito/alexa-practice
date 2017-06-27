@@ -12,6 +12,7 @@ exports.handler = function(event, context, callback) {
 
 var handlers = {
     'LaunchRequest': function() { //Executes when a new session is launched
+      console.log(this.attributes);
         if (!this.attributes['myLangauge']) {
             this.emit('LaunchIntent');
         } else {
