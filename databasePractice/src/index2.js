@@ -36,7 +36,19 @@ function handleSaveData(request, context, callback){
   var options = {};
   var dataInput = request.intent.slots.data.value;
   options.speechText = "Failed to save";
+  saveToDataBase(dataInput, function(res, err){
+    if(res){
+      options.speechText = "success";
+      options.endSession = true;
+      context.succeed(buildResponse(options));
+    }
+    else {
+      context.fail(err);
+    }
+  });
+}
 
+function saveToDataBase(dataInput, callback){
   var params = {
     TableName: "DataBasePractice",
     Item: {
@@ -46,12 +58,9 @@ function handleSaveData(request, context, callback){
 
   docClient.put(params, function(err, data){
     if(err){
-      callback(err, null);
+      callback(null, err);
     } else {
-      callback(null, data);
-      options.speechText = "Data has been saved";
-      options.endSession = true;
-      return context.succeed(buildResponse(options));
+      callback(data, null);
     }
   });
 }
