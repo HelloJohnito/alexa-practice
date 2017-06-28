@@ -1,6 +1,10 @@
 'use strict';
 
 var audioData = {
+
+  genres: ['rock', 'blues', 'jazz'],
+  keys: ['A', 'G', 'C', 'D', 'F'],
+
   rock: {
     'A': [
       {

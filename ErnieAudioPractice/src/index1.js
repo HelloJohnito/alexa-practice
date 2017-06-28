@@ -41,54 +41,24 @@ exports.handler = function(event, context){
 
 
 function buildResponse(options){
-  var response = {
-    version: "1.0",
-    response: {
-      // outputSpeech: {
-      //   type: "SSML",
-      //   ssml: "<speak>" + options.speechText + "</speak>"
-      // },
-      shouldEndSession: options.endSession
-    }
-  };
-
-  if(options.directives){
-    response.directives = options.directives;
-  }
-
-  if(options.repromptText){
-    response.response.reprompt = {
-      outputSpeech: {
-        type: "SSML",
-        ssml: "<speak>" + options.reprompText + "</speak>"
-      }
+  return {
+        "response": {
+            "directives": [
+                {
+                    "type": "AudioPlayer.Play",
+                    "playBehavior": "REPLACE_ALL",
+                    "audioItem": {
+                        "stream": {
+                            "token": "12345",
+                            "url": "https://emit-media-production.s3.amazonaws.com/pbs/the-afterglow/2016/08/24/1700/201608241700_the-afterglow_64.m4a",
+                            "offsetInMilliseconds": 0
+                        }
+                    }
+                }
+            ],
+            "shouldEndSession": "True"
+        }
     };
-  }
-
-  if(options.cardTitle){
-    response.response.card = {
-      type: "Simple",
-      title: options.cardTitle
-    };
-
-    if(options.imageUrl){
-      response.response.card.type = "Standard";
-      response.response.card.content = options.cardContent;
-      response.response.card.image = {
-        smallImageUrl: options.imageUrl,
-        largeImageUrl: options.imageUrl
-      };
-    }
-    else {
-      response.response.card.content = options.cardContent;
-    }
-  }
-
-  if(options.session && options.session.attributes){
-    response.sessionAttributes = options.session.attributes;
-  }
-
-  return response;
 }
 
 

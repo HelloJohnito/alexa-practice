@@ -1,7 +1,6 @@
 {
   "intents": [
     {
-      "intent": "JamIntent",
       "slots": [
         {
           "name": "Genre",
@@ -11,7 +10,8 @@
           "name": "Key",
           "type": "LIST_OF_KEYS"
         }
-      ]
+      ],
+      "intent": "JamIntent"
     },
     {
       "intent": "AMAZON.YesIntent"
@@ -30,6 +30,12 @@
     },
     {
       "intent": "AMAZON.NextIntent"
+    },
+    {
+      "intent": "AMAZON.PauseIntent"
+    },
+    {
+      "intent": "AMAZON.ResumeIntent"
     }
   ]
 }

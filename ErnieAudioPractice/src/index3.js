@@ -44,16 +44,28 @@ function buildResponse(options){
   var response = {
     version: "1.0",
     response: {
-      // outputSpeech: {
-      //   type: "SSML",
-      //   ssml: "<speak>" + options.speechText + "</speak>"
-      // },
+      directives: [
+        {
+          "type": "AudioPlayer.Play",
+          "playBehavior": "REPLACE_ALL",
+          "audioItem": {
+              "stream": {
+                  "token": "0",
+                  "url": options.songUrl,
+                  "offsetInMilliseconds": 0
+              }
+          }
+        }
+      ],
       shouldEndSession: options.endSession
     }
   };
 
-  if(options.directives){
-    response.directives = options.directives;
+  if(options.speechText){
+    response.response.outputSpeech = {
+      type: "SSML",
+      ssml: "<speak>" + options.speechText + "</speak>"
+    };
   }
 
   if(options.repromptText){
@@ -120,24 +132,12 @@ function handleJamIntent(request, context, session){
   key = key.toUpperCase();
   let song = audioData[genre][key][index];
 
-  let audioObject = {
-    "playBehavior": "REPLACE_ALL",
-    "audioItem": {
-      "stream": {
-        "type": "AudioPlayer.Play",
-        "token": "0",
-        "url": song.url,
-        "offsetInMilliseconds": 0
-      }
-    }
-  };
-
   //come back to this. need condition to check for
   //length of array
   session.attributes.index += 1;
 
   options.speechText = `Here is ${song.title}`;
-  options.directives.push(audioObject);
+  options.songUrl = song.url;
   options.endSession = true;
   context.succeed(buildResponse(options));
 }
