@@ -1,0 +1,35 @@
+{
+  "intents": [
+    {
+      "intent": "JamIntent",
+      "slots": [
+        {
+          "name": "Genre",
+          "type": "LIST_OF_GENRES"
+        },
+        {
+          "name": "Key",
+          "type": "LIST_OF_KEYS"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.NextIntent"
+    }
+  ]
+}
