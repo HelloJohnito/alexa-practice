@@ -20,10 +20,9 @@ exports.handler = function(event, context){
       if(request.intent.name === "JamIntent"){
         handleJamIntent(request, context, session);
       }
-      // else if(request.intent.name === "AMAZON.YesIntent"){
-      //   create a new intent?
-      //   handleJamIntent();
-      // }
+      else if(request.intent.name === "AMAZON.NextIntent"){
+        handleJamIntent(request, context, session);
+      }
       else if(request.intent.name === "AMAZON.StopIntent" || request.intent.name === "AMAZON.CancelIntent"){
           context.succeed(buildResponse({
             speechText: "Good bye",
@@ -141,3 +140,5 @@ function handleJamIntent(request, context, session){
   options.endSession = true;
   context.succeed(buildResponse(options));
 }
+
+// for next have session that has the key and the genre. Then use that. 
