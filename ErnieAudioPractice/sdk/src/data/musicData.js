@@ -5,51 +5,51 @@ var musicData = {
   rock: {
     'A': [
       {
-          'title' : 'Rock A',
+          'title' : 'Rock in the key of A1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Rock A',
+          'title' : 'Rock in the key of A2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'G': [
       {
-          'title' : 'Rock G',
+          'title' : 'Rock in the key of G1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Rock G',
+          'title' : 'Rock in the key of G2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'C': [
       {
-          'title' : 'Rock C',
+          'title' : 'Rock in the key of C1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Rock C',
+          'title' : 'Rock in the key of C2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'D': [
       {
-          'title' : 'Rock D',
+          'title' : 'Rock in the key of D1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Rock D',
+          'title' : 'Rock in the key of D2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'F':[
       {
-          'title' : 'Rock F',
+          'title' : 'Rock in the key of F1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Rock F',
+          'title' : 'Rock in the key of F2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ]
@@ -58,51 +58,51 @@ var musicData = {
   blues: {
     'A': [
       {
-          'title' : 'Blues A',
+          'title' : 'Blues in the key of A1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Blues A',
+          'title' : 'Blues in the key of A2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'G': [
       {
-          'title' : 'Blues G',
+          'title' : 'Blues in the key of G1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Blues G',
+          'title' : 'Blues in the key of G2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'C': [
       {
-          'title' : 'Blues C',
+          'title' : 'Blues in the key of C1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Blues C',
+          'title' : 'Blues in the key of C2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'D': [
       {
-          'title' : 'Blues D',
+          'title' : 'Blues in the key of D1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Blues D',
+          'title' : 'Blues in the key of D2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'F':[
       {
-          'title' : 'Blues F',
+          'title' : 'Blues in the key of F1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Blues F',
+          'title' : 'Blues in the key of F2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ]
@@ -111,51 +111,51 @@ var musicData = {
   jazz: {
     'A': [
       {
-          'title' : 'Jazz A',
+          'title' : 'Jazz in the key of A1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Jazz A',
+          'title' : 'Jazz in the key of A2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'G': [
       {
-          'title' : 'Jazz G',
+          'title' : 'Jazz in the key of G1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Jazz G',
+          'title' : 'Jazz in the key of G2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'C': [
       {
-          'title' : 'Jazz C',
+          'title' : 'Jazz in the key of C1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Jazz C',
+          'title' : 'Jazz in the key of C2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'D': [
       {
-          'title' : 'Jazz D',
+          'title' : 'Jazz in the key of D1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Jazz D',
+          'title' : 'Jazz in the key of D2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ],
     'F':[
       {
-          'title' : 'Jazz F',
+          'title' : 'Jazz in the key of F1',
           'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
       },
       {
-          'title' : 'Jazz F',
+          'title' : 'Jazz in the key of F2',
           'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
       }
     ]

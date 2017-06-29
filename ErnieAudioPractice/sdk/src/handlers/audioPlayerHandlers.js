@@ -10,7 +10,7 @@ var musicData = require('../data/musicData');
 var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER, {
 
   'LaunchRequest': function () {
-    this.emit(':ask', "Welcome to Ernie Ball's Jamming Session. What genre of music do you want to play and in what key?", "The options for genre are: blues, rock, and jazz. The options for keys are: a, g, c, d, and f.");
+    this.emit(':ask', "Welcome to Ernie Ball's Jamming Session. What genre of music do you want to play, and in what key?", "The options for genre are: blues, rock, and jazz. The options for keys are: a, g, c, d, and f.");
   },
 
 // Start Playing Music
