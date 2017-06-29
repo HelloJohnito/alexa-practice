@@ -10,7 +10,8 @@ var musicData = require('../data/musicData');
 var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER, {
 
   'LaunchRequest': function () {
-    this.emit(':ask', "Welcome to Ernie Ball's Jamming Session. What genre of music do you want to play, and in what key?", "The options for genre are: blues, rock, and jazz. The options for keys are: a, g, c, d, and f.");
+    this.emit(':ask', "welcome");
+    // this.emit(':ask', "Welcome to Ernie Ball's Jamming Session. What genre of music do you want to play, and in what key? <break time='.5s'/> The options for genres are: blues, rock, and jazz. The options for keys are: a, g, c, d, and f. You can start by saying: play rock in the key of A");
   },
 
 // Start Playing Music
@@ -24,8 +25,9 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
     if(!key){
       key = musicData.keys[Math.floor(Math.random() * musicData.keys.length)];
     }
-    key = key.toUpperCase();
+    key = key.toUpperCase().replace(".", "");
     var songs = musicData[genre][key];
+
     var index = Math.floor(Math.random() * songs.length);
     var song = songs[index];
 
@@ -49,7 +51,8 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
     }
     // Invalid genre or key
     else {
-      this.emit(':ask', `Sorry, please try again. The options for genres are blues, rock, and jazz. The options for keys are a, g, c, d, and f. What would you like to jam to?`);
+      var outputSpeech = `Sorry, please try again. The options for genres are: blues, rock, and jazz. The options for keys are: a, g, c, d, and f. What would you like to jam to? You can start by saying: play rock in the key of A.`
+      this.emit(':ask', outputSpeech, outputSpeech);
     }
   },
 
@@ -83,13 +86,12 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
 
   'AMAZON.NextIntent': function () {
     // Get Audio Player Session Attributes
+
     var songs = musicData[this.attributes['genre']][this.attributes['key']];
     var index = this.attributes['index'];
-
     // If last song in the queue - Go to the front of the queue
     if (index === songs.length - 1) {
       index = 0;
-      // this.attributes['index'] = 0; // why do we not set this?
     }
     // Play Next Episode
     else {
@@ -146,7 +148,7 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
 
 
   'AMAZON.HelpIntent': function () {
-    var audioHelpMessage = "You are jamming with Ernie Ball. You can say, next or previous to navigate through the songs. At any time, you can say pause to pause the audio and resume to resume.";
+    var audioHelpMessage = "You are jamming with <break time='.2s'/> Ernie Ball. <break time='.2s'/> You can say, next or previous to navigate through the songs. At any time, you can say pause to pause the audio, and resume to resume the audio. What genre of music do you want to play, and in what key? <break time='.5s'/> The options for genres are: blues, rock, and jazz. The options for keys are: a, g, c, d, and f. You can start by saying: play rock in the key of A.";
     this.emit(':ask', audioHelpMessage, audioHelpMessage);
   },
 
