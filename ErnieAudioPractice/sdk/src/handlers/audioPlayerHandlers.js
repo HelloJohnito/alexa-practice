@@ -13,7 +13,7 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
     this.emit(':ask', "Welcome to Ernie Ball's Jamming Session. What genre of music do you want to play and in what key?", "The options for genre are: blues, rock, and jazz. The options for keys are: a, g, c, d, and f.");
   },
 
-  // Start Playing Music
+// Start Playing Music
   'JamIntent': function(){
     var genre = this.event.request.intent.slots.Genre.value;
     var key = this.event.request.intent.slots.Key.value;
@@ -42,6 +42,7 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
 
       // Audio Directive
       this.response.audioPlayerPlay('REPLACE_ALL', song.url, index, null, 0);
+      // this.response.audioPlayerPlay(playBehavior, url, token, expectedPreviousToken, milliseconds);
 
       // Build Response and Send to Alexa
       this.emit(':responseReady');
@@ -53,7 +54,7 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
   },
 
 
-  // Audio Control Intents - Intent Request Handlers
+// Audio Control Intents - Intent Request Handlers
   'AMAZON.PauseIntent': function () {
     this.response.audioPlayerStop();
     this.emit(':responseReady');
@@ -84,8 +85,6 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
     // Get Audio Player Session Attributes
     var songs = musicData[this.attributes['genre']][this.attributes['key']];
     var index = this.attributes['index'];
-    var currentSong = songs[index];
-    var offsetInMilliseconds = this.attributes['offsetInMilliseconds'];
 
     // If last song in the queue - Go to the front of the queue
     if (index === songs.length - 1) {
@@ -110,8 +109,6 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
     // Get Audio Player Session Attributes
     var songs = musicData[this.attributes['genre']][this.attributes['key']];
     var index = this.attributes['index'];
-    var currentSong = songs[index];
-    var offsetInMilliseconds = this.attributes['offsetInMilliseconds'];
 
     // If firt song in the queue - Go to the end of the queue
     if (index === 0) {
@@ -124,7 +121,7 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
 
     var previousSong = songs[index];
     // Speech Output
-    this.response.speak(`Now playing ${previousSong.title}`);
+    this.response.speak(`Now playing ${previousSong.title}.`);
     // Audio Directive
     this.response.audioPlayerPlay('REPLACE_ALL', previousSong.url, index, null, 0);
     // Build Response and Send to Alexa
@@ -133,11 +130,12 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
 
   'AMAZON.RepeatIntent': function () {
     // Get Audio Player Session Attributes
-    var currentEpisode = this.attributes['currentEpisode'];
+    var songs = musicData[this.attributes['genre']][this.attributes['key']];
+    var index = this.attributes['index'];
+    var currentSong = songs[index];
 
     // Audio Directive
-    this.response.audioPlayerPlay('REPLACE_ALL', alexaDevChatPodcasts[currentEpisode-1].audioURL, currentEpisode, null, 0);
-
+    this.response.audioPlayerPlay('REPLACE_ALL', currentSong.url, index, null, 0);
     // Build Response and Send to Alexa
     this.emit(':responseReady');
   },
@@ -148,24 +146,23 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
 
 
   'AMAZON.HelpIntent': function () {
-    var audioHelpMessage = "You are listening to the Alexa Dev Chat Podcast. You can say, next or previous to navigate through the podcasts. At any time, you can say pause to pause the audio and resume to resume.";
+    var audioHelpMessage = "You are jamming with Ernie Ball. You can say, next or previous to navigate through the songs. At any time, you can say pause to pause the audio and resume to resume.";
     this.emit(':ask', audioHelpMessage, audioHelpMessage);
   },
 
 
-  // Audio Event Handlers - AudioPlayer Request Handlers
+// Audio Event Handlers - AudioPlayer Request Handlers
   'PlaybackStarted': function () {
-    this.attributes['currentEpisode'] = parseInt(this.event.request.token);
+    this.attributes['index'] = parseInt(this.event.request.token);
     this.attributes['offsetInMilliseconds'] = this.event.request.offsetInMilliseconds;
     this.emit(':saveState', true);
   },
   'PlaybackFinished': function () {
-    // Back to Main State
-    this.handler.state = constants.states.MAIN;
-    this.emit(':saveState', true);
+    //Play Next Song
+    this.emitWithState('AMAZON.NextIntent');
   },
   'PlaybackStopped': function () {
-    this.attributes['currentEpisode'] = parseInt(this.event.request.token);
+    this.attributes['index'] = parseInt(this.event.request.token);
     this.attributes['offsetInMilliseconds'] = this.event.request.offsetInMilliseconds;
     this.emit(':saveState', true);
   },
@@ -173,7 +170,6 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
     console.log('Player Failed: ', this.event.request.error);
     this.context.succeed(true);
   },
-
 
   // Unhandled Function - Handles Optional Audio Intents Gracefully
   'Unhandled': function () {
