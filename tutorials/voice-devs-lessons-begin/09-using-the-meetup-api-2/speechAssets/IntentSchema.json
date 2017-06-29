@@ -1,19 +1,6 @@
 {
   "intents": [
     {
-      "intent": "NameCapture",
-      "slots": [
-        {
-          "name": "USFirstName",
-          "type": "AMAZON.US_FIRST_NAME"
-        },
-        {
-          "name": "UKFirstName",
-          "type": "AMAZON.GB_FIRST_NAME"
-        }
-      ]
-    },
-    {
       "intent": "AlexaMeetupCityCheck",
       "slots": [
         {
@@ -28,6 +15,32 @@
     },
     {
       "intent": "AlexaMeetupOrganiserCheck",
+      "slots": [
+        {
+          "name": "USCity",
+          "type": "AMAZON.US_CITY"
+        },
+        {
+          "name": "EuropeanCity",
+          "type": "AMAZON.EUROPE_CITY"
+        }
+      ]
+    },
+    {
+      "intent": "AlexaMeetupMembersCheck",
+      "slots": [
+        {
+          "name": "USCity",
+          "type": "AMAZON.US_CITY"
+        },
+        {
+          "name": "EuropeanCity",
+          "type": "AMAZON.EUROPE_CITY"
+        }
+      ]
+    },
+    {
+      "intent": "AlexaNextMeetupCheck",
       "slots": [
         {
           "name": "USCity",

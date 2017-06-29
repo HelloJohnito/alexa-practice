@@ -1,0 +1,44 @@
+{
+  "intents": [
+    {
+      "intent": "JamIntent",
+      "slots": [
+        {
+          "name": "Genre",
+          "type": "LIST_OF_GENRES"
+        },
+        {
+          "name": "Key",
+          "type": "LIST_OF_KEYS"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.PauseIntent"
+    },
+    {
+      "intent": "AMAZON.ResumeIntent"
+    },
+    {
+      "intent": "AMAZON.NextIntent"
+    },
+    {
+      "intent": "AMAZON.PreviousIntent"
+    },
+    {
+      "intent": "AMAZON.RepeatIntent"
+    },
+    {
+      "intent": "AMAZON.StartOverIntent"
+    }
+  ]
+}

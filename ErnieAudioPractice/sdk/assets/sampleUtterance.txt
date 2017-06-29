@@ -1,0 +1,9 @@
+JamIntent to jam with me
+JamIntent to jam with me in {Key}
+JamIntent to play {Genre} with me
+JamIntent to play some {Genre}
+JamIntent to play {Genre} in the key of {Key}
+
+JamIntent play {Genre} in the key of {Key}
+JamIntent play {Genre} music
+JamIntent play in the key of {Key}

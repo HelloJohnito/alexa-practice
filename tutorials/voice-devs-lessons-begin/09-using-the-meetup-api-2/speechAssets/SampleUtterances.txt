@@ -1,4 +1,3 @@
-
 AlexaMeetupNumbers how many cities have alexa meetups
 AlexaMeetupNumbers how many alexa meetups are there
 
@@ -16,6 +15,14 @@ AlexaMeetupOrganiserCheck who is the organiser of the {EuropeanCity} alexa meetu
 AlexaMeetupOrganiserCheck tell me the organiser of the {USCity} alexa meetup
 AlexaMeetupOrganiserCheck tell me the organiser of the {EuropeanCity} alexa meetup
 
+AlexaMeetupMembersCheck how many members does the {USCity} alexa meetup have
+AlexaMeetupMembersCheck how many members does the {EuropeanCity} alexa meetup have
+AlexaMeetupMembersCheck how many people does the {USCity} alexa meetup have
+AlexaMeetupMembersCheck how many people does the {EuropeanCity} alexa meetup have
+AlexaMeetupMembersCheck how big is the {USCity} alexa meetup
+AlexaMeetupMembersCheck how big is the {EuropeanCity} alexa meetup
 
-NameCapture my name is {USFirstName}
-NameCapture my name is {UKFirstName}
+AlexaNextMeetupCheck whens the next {USCity} alexa meetup
+AlexaNextMeetupCheck whens the next {EuropeanCity} alexa meetup
+AlexaNextMeetupCheck when is the next {USCity} alexa meetup
+AlexaNextMeetupCheck when is the next {EuropeanCity} alexa meetup
