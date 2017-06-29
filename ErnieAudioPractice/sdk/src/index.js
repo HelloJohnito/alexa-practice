@@ -5,7 +5,7 @@ var constants = require('./constants/constants');
 
 // Handlers
 var onboardingStateHandlers = require('./handlers/onboardingStateHandlers');
-var mainStateHandlers = require('./handlers/mainStateHandlers');
+// var mainStateHandlers = require('./handlers/mainStateHandlers');
 var audioPlayerHandlers = require('./handlers/audioPlayerHandlers');
 
 exports.handler = function(event, context, callback){
@@ -15,7 +15,6 @@ exports.handler = function(event, context, callback){
 
   alexa.registerHandlers(
     onboardingStateHandlers,
-    mainStateHandlers,
     audioPlayerHandlers
   );
 

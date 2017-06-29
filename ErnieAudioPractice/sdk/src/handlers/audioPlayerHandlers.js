@@ -154,7 +154,7 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
 // Audio Event Handlers - AudioPlayer Request Handlers
   'PlaybackStarted': function () {
     this.attributes['index'] = parseInt(this.event.request.token);
-    this.attributes['offsetInMilliseconds'] = this.event.request.offsetInMilliseconds;
+    this.attributes['offsetInMilliseconds'] = parseInt(this.event.request.offsetInMilliseconds);
     this.emit(':saveState', true);
   },
   'PlaybackFinished': function () {
@@ -163,7 +163,7 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
   },
   'PlaybackStopped': function () {
     this.attributes['index'] = parseInt(this.event.request.token);
-    this.attributes['offsetInMilliseconds'] = this.event.request.offsetInMilliseconds;
+    this.attributes['offsetInMilliseconds'] = parseInt(this.event.request.offsetInMilliseconds);
     this.emit(':saveState', true);
   },
   'PlaybackFailed': function () {
