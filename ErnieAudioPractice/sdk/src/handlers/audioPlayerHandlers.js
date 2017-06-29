@@ -10,8 +10,7 @@ var musicData = require('../data/musicData');
 var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER, {
 
   'LaunchRequest': function () {
-    this.emit(':ask', "welcome");
-    // this.emit(':ask', "Welcome to Ernie Ball's Jamming Session. What genre of music do you want to play, and in what key? <break time='.5s'/> The options for genres are: blues, rock, and jazz. The options for keys are: a, g, c, d, and f. You can start by saying: play rock in the key of A");
+    this.emit(':ask', "Welcome to Ernie Ball's Jamming Session. What genre of music do you want to play, and in what key? <break time='.5s'/> The options for genres are: blues, rock, and jazz. The options for keys are: a, g, c, d, and f. You can start by saying: play rock in the key of A");
   },
 
 // Start Playing Music
@@ -32,7 +31,6 @@ var audioPlayerHandlers = Alexa.CreateStateHandler(constants.states.AUDIO_PLAYER
     var song = songs[index];
 
     if(song){
-
       // save to session
       this.attributes['genre'] = genre;
       this.attributes['key'] = key;
