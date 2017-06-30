@@ -26,11 +26,11 @@ var musicData = {
     'C': [
       {
           'title' : 'Rock in the key of C1',
-          'url' : 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3'
+          'url' : 'https://s3-us-west-2.amazonaws.com/ernieballstaging/music/Medium_Rock_in_C.mp3'
       },
       {
           'title' : 'Rock in the key of C2',
-          'url' : 'https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3'
+          'url' : 'https://s3-us-west-2.amazonaws.com/ernieballstaging/music/Medium_Rock_in_C.mp3'
       }
     ],
     'D': [
