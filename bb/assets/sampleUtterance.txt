@@ -1,0 +1,4 @@
+DrinkIntent {drink}
+DrinkIntent I would like to have a {drink}
+DrinkIntent I would like to have a glass of {drink}
+DrinkIntent {drink} please

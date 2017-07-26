@@ -1,0 +1,22 @@
+{
+  "intents": [
+    {
+      "intent": "DrinkIntent",
+      "slots": [
+        {
+          "name": "drink",
+          "type": "LIST_OF_DRINKS"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}
