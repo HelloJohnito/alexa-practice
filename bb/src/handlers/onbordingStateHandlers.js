@@ -27,7 +27,7 @@ var onboardingStateHandlers = Alexa.CreateStateHandler(constants.states.ONBOARDI
   },
 
   'AMAZON.HelpIntent': function () {
-    this.emit(':ask', 'Please link your account to use this skil. I\'ve sent the details to your alexa app.');
+    this.emit(':ask', 'Please try again.');
   },
 
   'Unhandled': function () {
