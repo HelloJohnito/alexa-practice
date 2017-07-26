@@ -13,7 +13,7 @@ var mainStateHandlers = Alexa.CreateStateHandler(constants.states.MAIN, {
   },
 
   'DrinkIntent': function(){
-    var drink = this.event.request.intent.slots.Drink.value;
+    var drink = this.event.request.intent.slots.drink.value;
     var time = new Date;
     var hour = time.getHours();
 
@@ -38,12 +38,12 @@ var mainStateHandlers = Alexa.CreateStateHandler(constants.states.MAIN, {
     }
   },
 
-  'YesIntent': function(){
+  'YesDrinkAloneIntent': function(){
     // this.handler.state = constants.states.AUDIO_PLAYER;
     this.emit(':tell',"Let me help you with that.");
   },
 
-  'NoIntent': function(){
+  'NoDrinkAloneIntent': function(){
     this.emit(':tell', "I like where this is going.");
   },
 
