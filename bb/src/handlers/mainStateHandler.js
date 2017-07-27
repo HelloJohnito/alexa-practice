@@ -7,7 +7,7 @@ var constants = require('../constants/constants');
 var mainStateHandlers = Alexa.CreateStateHandler(constants.states.MAIN, {
 
   'LaunchRequest': function () {
-    let speechOutput = "Can I interest you with something from the 303 Bar? We have beer, wine, and whiskey.";
+    let speechOutput = "Can I interest you with something from the <say-as interpret-as="characters">303</say-as> Bar? We have beer, wine, and whiskey.";
     let reprompt = "What would you like to drink? Beer, wine, or whiskey?";
     this.emit(':ask', speechOutput, reprompt);
   },
